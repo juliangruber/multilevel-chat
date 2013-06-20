@@ -1,0 +1,32 @@
+{
+  "name": "multilevel-chat",
+  "description": "",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/juliangruber/multilevel-chat.git"
+  },
+  "homepage": "https://github.com/juliangruber/multilevel-chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "dependencies": {
+    "multilevel": "~4.0.8",
+    "engine.io-stream": "~0.3.1",
+    "level": "~0.10.0",
+    "browserify": "~2.18.1"
+  },
+  "devDependencies": {
+    "tap": "*"
+  },
+  "keywords": [
+    ""
+  ],
+  "author": {
+    "name": "Julian Gruber",
+    "email": "mail@juliangruber.com",
+    "url": "http://juliangruber.com"
+  },
+  "license": "MIT"
+}
