@@ -32,7 +32,7 @@ server.listen(7000);
 var level = require('level');
 var liveStream = require('level-live-stream');
 
-var db = level(__dirname + '/db');
+var db = level(__dirname + '/db', { valueEncoding: 'json' });
 liveStream.install(db);
 
 /**

@@ -22,7 +22,11 @@ var Input = require('./lib/input');
 var input = new Input();
 
 input.on('submit', function (msg) {
-  db.put('msg!' + Date.now(), msg, function (err) {
+  var obj = {
+    msg: msg,
+    user: 'cool javascripter'
+  };
+  db.put('msg!' + Date.now(), obj, function (err) {
     if (err) throw err;
   });
 });
@@ -50,7 +54,9 @@ db.createLiveStream()
   .pipe(through(function (obj) {
     var li = document.createElement('li');
     li.innerText = [
-      new Date(Number(obj.key.split('!')[1])), obj.value
+      new Date(Number(obj.key.split('!')[1])),
+      obj.value.user,
+      obj.value.msg
     ].join(' : ');
     list.appendChild(li);
   }));
