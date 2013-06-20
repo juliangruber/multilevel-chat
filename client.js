@@ -32,6 +32,14 @@ ready(function () {
 });
 
 /**
+ * Authentication.
+ */
+
+db.auth({ name: prompt('name') }, function (err) {
+  if (err) throw err;
+});
+
+/**
  * Message list.
  */
 

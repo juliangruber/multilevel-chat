@@ -52,7 +52,18 @@ var multilevel = require('multilevel');
 var Engine = require('engine.io-stream');
 
 var engine = Engine(function (con) {
-  con.pipe(multilevel.server(db)).pipe(con);
+  con.pipe(multilevel.server(db, {
+    auth: auth
+  })).pipe(con);
 });
 
 engine.attach(server, '/engine');
+
+/**
+ * Authentication.
+ */
+
+function auth (user, cb) {
+  if (user.name == 'bad motherfucker') return cb(new Error('nope'));
+  cb(null, user);
+}
