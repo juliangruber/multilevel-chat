@@ -53,7 +53,8 @@ var Engine = require('engine.io-stream');
 
 var engine = Engine(function (con) {
   con.pipe(multilevel.server(db, {
-    auth: auth
+    auth: auth,
+    access: access
   })).pipe(con);
 });
 
@@ -66,4 +67,8 @@ engine.attach(server, '/engine');
 function auth (user, cb) {
   //if (user.name != 'cool javascripter') return cb(new Error('not cool enough'));
   cb(null, user);
+}
+
+function access (user, db, method, args) {
+  if (method == 'put' && user.name != args[1].user) throw new Error('bad!');
 }
