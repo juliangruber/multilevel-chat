@@ -15,7 +15,8 @@
     "multilevel": "~4.0.8",
     "engine.io-stream": "~0.3.1",
     "level": "~0.10.0",
-    "browserify": "~2.18.1"
+    "browserify": "~2.18.1",
+    "domready": "~0.2.11"
   },
   "devDependencies": {
     "tap": "*"

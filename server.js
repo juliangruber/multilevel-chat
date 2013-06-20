@@ -23,6 +23,8 @@ var server = http.createServer(function (req, res) {
   }
 });
 
+server.listen(7000);
+
 /**
  * Database.
  */
@@ -30,4 +32,15 @@ var server = http.createServer(function (req, res) {
 var level = require('level');
 var db = level(__dirname + '/db');
 
-server.listen(7000);
+/**
+ * Multilevel.
+ */
+
+var multilevel = require('multilevel');
+var Engine = require('engine.io-stream');
+
+var engine = Engine(function (con) {
+  con.pipe(multilevel.server(db)).pipe(con);
+});
+
+engine.attach(server, '/engine');
