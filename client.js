@@ -6,8 +6,9 @@ var ready = require('domready');
 
 var engine = require('engine.io-stream');
 var multilevel = require('multilevel');
+var manifest = require('./manifest.json');
 
-var db = multilevel.client();
+var db = multilevel.client(manifest);
 db.pipe(engine('/engine')).pipe(db);
 
 window.db = db;
@@ -30,3 +31,14 @@ input.on('submit', function (msg) {
 ready(function () {
   document.body.appendChild(input.el);
 });
+
+/**
+ * Message list.
+ */
+
+var through = require('through');
+
+db.createLiveStream()
+  .pipe(through(function (obj) {
+    console.log('got', obj)
+  }));

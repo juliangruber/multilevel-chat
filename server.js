@@ -30,7 +30,19 @@ server.listen(7000);
  */
 
 var level = require('level');
+var liveStream = require('level-live-stream');
+
 var db = level(__dirname + '/db');
+liveStream.install(db);
+
+/**
+ * Create manifest.
+ */
+
+var createManifest = require('level-manifest');
+
+var manifest = createManifest(db);
+fs.writeFileSync(__dirname + '/manifest.json', JSON.stringify(manifest));
 
 /**
  * Multilevel.
