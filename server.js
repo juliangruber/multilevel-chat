@@ -64,6 +64,6 @@ engine.attach(server, '/engine');
  */
 
 function auth (user, cb) {
-  if (user.name != 'cool javascripter') return cb(new Error('not cool enough'));
-  cb(null);
+  //if (user.name != 'cool javascripter') return cb(new Error('not cool enough'));
+  cb(null, user);
 }

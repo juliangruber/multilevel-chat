@@ -14,33 +14,34 @@ db.pipe(engine('/engine')).pipe(db);
 window.db = db;
 
 /**
- * Message input.
- */
-
-var Input = require('./lib/input');
-
-var input = new Input();
-
-input.on('submit', function (msg) {
-  var obj = {
-    msg: msg,
-    user: 'cool javascripter'
-  };
-  db.put('msg!' + Date.now(), obj, function (err) {
-    if (err) throw err;
-  });
-});
-
-ready(function () {
-  document.body.appendChild(input.el);
-});
-
-/**
  * Authentication.
  */
 
-db.auth({ name: prompt('name') }, function (err) {
+var user = prompt('name');
+db.auth({ name: user }, function (err) {
   if (err) throw err;
+
+  /**
+   * Message input.
+   */
+
+  var Input = require('./lib/input');
+
+  var input = new Input();
+
+  input.on('submit', function (msg) {
+    var obj = {
+      msg: msg,
+      user: user
+    };
+    db.put('msg!' + Date.now(), obj, function (err) {
+      if (err) throw err;
+    });
+  });
+
+  ready(function () {
+    document.body.appendChild(input.el);
+  });
 });
 
 /**
