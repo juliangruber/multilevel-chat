@@ -23,4 +23,11 @@ var server = http.createServer(function (req, res) {
   }
 });
 
+/**
+ * Database.
+ */
+
+var level = require('level');
+var db = level(__dirname + '/db');
+
 server.listen(7000);
