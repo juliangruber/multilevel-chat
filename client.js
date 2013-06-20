@@ -36,8 +36,17 @@ ready(function () {
  */
 
 var through = require('through');
+var list = document.createElement('ul');
 
 db.createLiveStream()
   .pipe(through(function (obj) {
-    console.log('got', obj)
+    var li = document.createElement('li');
+    li.innerText = [
+      new Date(Number(obj.key.split('!')[1])), obj.value
+    ].join(' : ');
+    list.appendChild(li);
   }));
+
+ready(function () {
+  document.body.appendChild(list);
+});
