@@ -24,7 +24,6 @@ var input = new Input();
 input.on('submit', function (msg) {
   db.put('msg!' + Date.now(), msg, function (err) {
     if (err) throw err;
-    console.log('wrote %s', msg);
   });
 });
 
