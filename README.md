@@ -1,4 +1,3 @@
-
 # multilevel-chat
 
 A realtime chat application using
@@ -13,3 +12,13 @@ and
 
 ---
 2013/06/20 @juliangruber
+
+## how to run
+
+```bash
+$ git clone ... && cd ...
+$ npm install
+$ cd finished
+$ node server &
+$ open http://localhost:7000
+```
