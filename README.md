@@ -1,3 +1,5 @@
+**For a more up to date example, see my [nodeconfeu talk](https://github.com/juliangruber/nodeconfeu-13/tree/master/done).**
+
 # multilevel-chat
 
 A realtime chat application using
